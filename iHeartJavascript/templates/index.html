@@ -1,0 +1,95 @@
+<!--iHeartJavascipt index.html file-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>iHeartJavascript</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/style.css">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+  <style>
+    html, body, #word-cloud {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-4">Welcome to iHeartData!</h1>
+      <p class="lead">
+        Heart disease is something we often overlook if we aren’t directly affected, but the stats of this disease are a little staggering. In fact, heart disease is the number one cause of death in the United States. While this is a frightening statistic, rest assured that heart disease is often preventable with healthy lifestyle choices. Below we explore in particular, how heart disease incidence and heart disease types vary by factors such as age and gender. <br><br>
+      </p>
+    </div>
+  </div>
+  <div id="word-cloud"></div>
+    <script>
+      anychart.onDocumentReady(function() {
+        var data = [
+          {"x": "High LDL Cholesterol", "value": 1090000000,},
+          {"x": "High Cholesterol", "value": 983000000},
+          {"x": "Smoking", "value": 544000000},
+          {"x": "Stress", "value": 527000000},
+          {"x": "Genetics", "value": 422000000},
+          {"x": "Exercise", "value": 281000000},
+          {"x": "Diet", "value": 267000000},
+          {"x": "Sleep Apnea", "value": 261000000},
+          {"x": "Obesity", "value": 229000000},
+          {"x": "Alcohol Consumption", "value": 229000000},
+          {"x": "Free Radicals", "value": 150000000},
+          {"x": "Old Age", "value": 148000000},
+        ];
+       // create a tag (word) cloud chart
+        var chart = anychart.tagCloud(data);
+
+         // set a chart title
+        chart.title('')
+        // set an array of angles at which the words will be laid out
+        chart.angles([0])
+        // enable a color range
+        chart.colorRange(true);
+        // set the color range length
+        chart.colorRange().length('400%');
+
+        // display the word cloud chart
+        chart.container("word-cloud");
+        chart.draw();
+      });
+    </script>
+<!-- Stacked Bar Chart -->
+  <div id="plot3"></div>
+<!-- Box Plot -->
+  <div id="plot1"></div>
+<!-- Normalized Stacked Filled Line Chart -->
+  <div id="plot2"></div>
+  <div id="plot4"></div>
+  <div id="plot5"></div>
+  <div id="plot6"></div>
+  <h2>Chest Pain Types by Gender</h2>
+  <select id="selDataset" onchange="getData(this.value)">
+      <option value="dataset1">Men</option>
+      <option value="dataset2">Women</option>
+  </select>
+
+  <div id="pie"></div>
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="../static/js/plots.js"></script>
+    <!-- glitch button and style -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script
+      src="https://button.glitch.me/button.js"
+      data-style="glitch"
+    ></script>
+
+    <!-- bundle all the scripts! thanks to webpack -->
+    <script type="text/javascript" src="/bundle.js"></script>
+</body>
+</html>
